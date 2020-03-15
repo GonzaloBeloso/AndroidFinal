@@ -14,11 +14,11 @@ import com.gonzalo.proyectofinal.SQL.DatabaseHelper;
 
 public class Registro extends AppCompatActivity implements View.OnClickListener {
 
-    EditText editUsuario, editPasswordUno, editPasswordDos;
-    Button buttonRegistro, buttonVaciar;
-    TextView idviewlogin;
-
+    EditText editU, editPUno, editPDos;
+    Button btnR, btnV;
+    TextView idLogin;
     DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,19 +28,19 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void acciones() {
-        buttonVaciar.setOnClickListener(this);
-        buttonRegistro.setOnClickListener(this);
-        idviewlogin.setOnClickListener(this);
+        btnV.setOnClickListener(this);
+        btnR.setOnClickListener(this);
+        idLogin.setOnClickListener(this);
     }
 
     private void instancias() {
 
-        buttonRegistro = findViewById(R.id.idButtonRegistrar);
-        buttonVaciar = findViewById(R.id.idButtonVaciar);
-        editUsuario = findViewById(R.id.editUsuarioRegistro);
-        editPasswordUno = findViewById(R.id.editPrimeraPassRegistro);
-        editPasswordDos = findViewById(R.id.editSegundaPassRegistro);
-        idviewlogin = findViewById(R.id.idtextLogin);
+        btnR = findViewById(R.id.idButtonRegistrar);
+        btnV = findViewById(R.id.idButtonVaciar);
+        editU = findViewById(R.id.editUsuarioRegistro);
+        editPUno = findViewById(R.id.editPrimeraPassRegistro);
+        editPDos = findViewById(R.id.editSegundaPassRegistro);
+        idLogin = findViewById(R.id.idtextLogin);
 
         databaseHelper = new DatabaseHelper(this);
     }
@@ -49,13 +49,13 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.idButtonRegistrar:
-                if (editUsuario.equals("") || editPasswordUno.equals("") || editPasswordDos.equals("")){
+                if (editU.equals("") || editPUno.equals("") || editPDos.equals("")){
                     Toast.makeText(this, "Se debe completar todos los campos", Toast.LENGTH_LONG).show();
                 }
-                else if(editPasswordUno.getText().toString().equals(editPasswordDos.getText().toString())) {
+                else if(editPUno.getText().toString().equals(editPDos.getText().toString())) {
                     System.out.println("Registrando usuario...");
-                    String usuarioRegistro = editUsuario.getText().toString();
-                    String passwordRegistro = editPasswordUno.getText().toString();
+                    String usuarioRegistro = editU.getText().toString();
+                    String passwordRegistro = editPUno.getText().toString();
                     Boolean usuarioExistente = databaseHelper.comprobarUsuario(usuarioRegistro);
                     if (usuarioExistente == true) {
                         Boolean insertarUsuario = databaseHelper.insertarUsuarios(usuarioRegistro, passwordRegistro);
@@ -66,14 +66,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                         Toast.makeText(this, "Ya existe el usuario", Toast.LENGTH_LONG).show();
                     }
                 }
-                break;
-            case R.id.idButtonVaciar:
-                System.out.println("Borrado");
-                break;
-            case R.id.idtextLogin:
-                System.out.println("Accediendo...");
-                Intent intent = new Intent(Registro.this,Login.class);
-                startActivity(intent);
                 break;
         }
     }

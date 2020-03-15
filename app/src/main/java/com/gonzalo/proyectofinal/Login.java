@@ -11,8 +11,8 @@ import com.gonzalo.proyectofinal.SQL.DatabaseHelper;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
-    Button idButtonLogin;
-    EditText editUsuario, editPasswordUno;
+    Button idLogin;
+    EditText editU, editPUno;
 
     DatabaseHelper databaseHelper;
     @Override
@@ -24,13 +24,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void acciones() {
-        idButtonLogin.setOnClickListener(this);
+        idLogin.setOnClickListener(this);
     }
 
     private void instancias() {
-        editUsuario = findViewById(R.id.editUsuarioLogin);
-        editPasswordUno = findViewById(R.id.editPrimeraPassLogin);
-        idButtonLogin = findViewById(R.id.idButtonLogin);
+        editU = findViewById(R.id.editUsuarioLogin);
+        editPUno = findViewById(R.id.editPrimeraPassLogin);
+        idLogin = findViewById(R.id.idButtonLogin);
         databaseHelper = new DatabaseHelper(this);
     }
 
@@ -38,12 +38,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.idButtonLogin:
-                if (editUsuario.equals("") || editPasswordUno.equals("")){
+                if (editU.equals("") || editPUno.equals("")){
                     Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_LONG).show();
                 }else{
                     System.out.println("complete");
-                    String nombreLogin = editUsuario.getText().toString();
-                    String passwordLogin = editPasswordUno.getText().toString();
+                    String nombreLogin = editU.getText().toString();
+                    String passwordLogin = editPUno.getText().toString();
                     boolean comprobarLogin = databaseHelper.comprobarLogin(nombreLogin,passwordLogin);
                     if(comprobarLogin==true){
                         System.out.println("Login correcto");
