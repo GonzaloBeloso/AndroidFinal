@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Plataformas">
+
+        <menu>
+            <item
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="PC"
+                android:id="@+id/pc"/>
+            <item
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Xbox"
+                android:id="@+id/xbox"/>/>
+            <item
+                android:icon="@android:drawable/ic_notification_overlay"
+                android:title="PS4"
+                android:id="@+id/ps4"/> />
+        </menu>
+
+    </item>
+
+
+
+</menu>
